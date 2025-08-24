@@ -1,0 +1,3 @@
+rootProject.name = 'ATM_Emulator'
+include 'server'
+include 'client'

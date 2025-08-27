@@ -11,6 +11,13 @@ public class Main {
     private static final Logger log = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) {
+        json();
+    }
+
+    private static void json() {
+
+    }
+    private static void environment() {
         EnvironmentReadService readService = EnvironmentReadService.getInstance();
         EnvironmentConfiguratorService configuratorService = EnvironmentConfiguratorService.getInstance();
 

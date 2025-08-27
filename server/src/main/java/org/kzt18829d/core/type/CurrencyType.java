@@ -12,7 +12,7 @@ public enum CurrencyType {
     EUR,
     USD;
 
-    private static Map<CurrencyType, String> currencyCode = new ConcurrentHashMap<>();
+    private static Map<CurrencyType, String> currencyCode = Map.of(RUB, "188403", EUR, "837740", USD, "716638");
 
     public static void setCurrencyCode(Map<CurrencyType, String> currencyCode_) {
         if (currencyCode == null || currencyCode.isEmpty())

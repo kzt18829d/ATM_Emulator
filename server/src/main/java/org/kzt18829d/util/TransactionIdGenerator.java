@@ -63,8 +63,8 @@ public class TransactionIdGenerator {
                 .append(receiverID)
                 .append(generateLetters(3));
 
-        if (transactionID.length() != idLength)
-            throw new IllegalArgumentException("Length of transaction id more than expected idLength");
+//        if (transactionID.length() != idLength)
+//            throw new IllegalArgumentException("Length of transaction id more than expected idLength");
 
         return transactionID.toString();
     }

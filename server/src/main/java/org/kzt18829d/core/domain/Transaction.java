@@ -1,5 +1,8 @@
 package org.kzt18829d.core.domain;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.kzt18829d.core.type.BankAccountID;
 import org.kzt18829d.core.type.TransactionID;
 
@@ -9,20 +12,26 @@ import java.util.Objects;
 
 public class Transaction {
     private final TransactionID transactionID;
-    private final BankAccountID sender;
-    private final BankAccountID receiver;
+    private final String sender;
+    private final String receiver;
     private final BigDecimal amount;
     private final LocalDateTime timestamp;
 
     public Transaction(TransactionID transactionID, BankAccountID sender, BankAccountID receiver, BigDecimal amount) {
         this.transactionID = transactionID;
-        this.sender = sender;
-        this.receiver = receiver;
+        this.sender = sender.getID();
+        this.receiver = receiver.getID();
         this.amount = amount;
         this.timestamp = LocalDateTime.now();
     }
 
-    public Transaction(TransactionID transactionID, BankAccountID sender, BankAccountID receiver, BigDecimal amount, LocalDateTime timestamp) {
+    @JsonCreator
+    public Transaction(
+            @JsonProperty("transactionID") TransactionID transactionID,
+            @JsonProperty("sender") String sender,
+            @JsonProperty("receiver") String receiver,
+            @JsonProperty("amount") BigDecimal amount,
+            @JsonProperty("timestamp") LocalDateTime timestamp) {
         this.transactionID = transactionID;
         this.sender = sender;
         this.receiver = receiver;
@@ -34,11 +43,11 @@ public class Transaction {
         return transactionID;
     }
 
-    public BankAccountID getSender() {
+    public String getSender() {
         return sender;
     }
 
-    public BankAccountID getReceiver() {
+    public String getReceiver() {
         return receiver;
     }
 

@@ -1,14 +1,20 @@
 package org.kzt18829d.core.type;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 
 public class BankAccountName {
     private String accountName;
 
-    public BankAccountName(String accountName) {
+    @JsonCreator
+    public BankAccountName(@JsonProperty("accountName") String accountName) {
         this.accountName = accountName;
     }
 
+    @JsonGetter("accountName")
     public String getAccountName() {
         return accountName;
     }

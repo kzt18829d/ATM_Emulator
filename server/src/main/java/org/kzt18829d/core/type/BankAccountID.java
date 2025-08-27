@@ -1,14 +1,20 @@
 package org.kzt18829d.core.type;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 
 public class BankAccountID {
     private final String id;
 
-    public BankAccountID(String id) {
+    @JsonCreator
+    public BankAccountID(@JsonProperty("id") String id) {
         this.id = id;
     }
 
+    @JsonGetter("id")
     public String getID() {
         return id;
     }

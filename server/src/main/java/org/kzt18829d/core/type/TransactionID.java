@@ -1,14 +1,21 @@
 package org.kzt18829d.core.type;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 
 public class TransactionID {
     private final String transactionID;
 
-    public TransactionID(String transactionID) {
+    @JsonCreator
+    public TransactionID(
+            @JsonProperty("id") String transactionID) {
         this.transactionID = transactionID;
     }
 
+    @JsonGetter("id")
     public String getTransactionID() {
         return transactionID;
     }

@@ -1,9 +1,12 @@
 package org.kzt18829d.core.type;
 
+import com.fasterxml.jackson.annotation.*;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class UserName {
     private final String surname;
     private final String name;
@@ -16,25 +19,32 @@ public class UserName {
         this.patronymic = nameParts.get(2);
     }
 
-    public UserName(String surname, String name, String patronymic) {
+    @JsonCreator
+    public UserName(
+            @JsonProperty("surname") String surname,
+            @JsonProperty("name") String name,
+            @JsonProperty("patronymic") String patronymic) {
         this.surname = surname;
         this.name = name;
         this.patronymic = patronymic;
     }
 
-
+    @JsonGetter("surname")
     public String getUserSurname() {
         return surname;
     }
 
+    @JsonGetter("name")
     public String getUserName() {
         return name;
     }
 
+    @JsonGetter("patronymic")
     public String getUserPatronymic() {
         return patronymic;
     }
 
+    @JsonIgnore
     public String getFullUserName() {
         return String.join(" ", surname, name, patronymic);
     }

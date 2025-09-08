@@ -1,4 +1,4 @@
-package org.kzt18829d.core.type;
+package org.kzt18829d.core.currency;
 
 import org.kzt18829d.exception.CurrencyTypeException;
 

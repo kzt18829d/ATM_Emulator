@@ -1,13 +1,10 @@
 package org.kzt18829d.service;
 
-import org.kzt18829d.core.type.CurrencyType;
+import org.kzt18829d.core.currency.CurrencyType;
 import org.kzt18829d.exception.EnvironmentException;
-import org.kzt18829d.util.AccountNumberGenerator;
-import org.kzt18829d.util.BankNumberGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.lang.reflect.Method;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;

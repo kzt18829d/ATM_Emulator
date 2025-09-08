@@ -1,10 +1,8 @@
 package org.kzt18829d.core.domain;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.kzt18829d.core.type.BankAccountID;
-import org.kzt18829d.core.type.TransactionID;
+import org.kzt18829d.core.identificators.BankAccountID;
+import org.kzt18829d.core.identificators.TransactionID;
+import org.kzt18829d.core.type.TransactionType;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -16,27 +14,24 @@ public class Transaction {
     private final String receiver;
     private final BigDecimal amount;
     private final LocalDateTime timestamp;
+    private final TransactionType transactionType;
 
-    public Transaction(TransactionID transactionID, BankAccountID sender, BankAccountID receiver, BigDecimal amount) {
+    public Transaction(TransactionID transactionID, BankAccountID sender, BankAccountID receiver, TransactionType transactionType, BigDecimal amount) {
         this.transactionID = transactionID;
-        this.sender = sender.getID();
-        this.receiver = receiver.getID();
+        this.sender = sender.getAccountID();
+        this.receiver = receiver.getAccountID();
         this.amount = amount;
         this.timestamp = LocalDateTime.now();
+        this.transactionType = transactionType;
     }
 
-    @JsonCreator
-    public Transaction(
-            @JsonProperty("transactionID") TransactionID transactionID,
-            @JsonProperty("sender") String sender,
-            @JsonProperty("receiver") String receiver,
-            @JsonProperty("amount") BigDecimal amount,
-            @JsonProperty("timestamp") LocalDateTime timestamp) {
+    public Transaction(TransactionID transactionID, String sender, String receiver, TransactionType transactionType, BigDecimal amount, LocalDateTime timestamp) {
         this.transactionID = transactionID;
         this.sender = sender;
         this.receiver = receiver;
         this.amount = amount;
         this.timestamp = timestamp;
+        this.transactionType = transactionType;
     }
 
     public TransactionID getTransactionID() {
@@ -57,6 +52,10 @@ public class Transaction {
 
     public LocalDateTime getTimestamp() {
         return timestamp;
+    }
+
+    public TransactionType getTransactionType() {
+        return transactionType;
     }
 
     @Override
